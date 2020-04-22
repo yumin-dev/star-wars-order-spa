@@ -1,9 +1,17 @@
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './app';
+import configureStore from './store';
+import rootSaga from './sagas';
 
-const title = 'React with Webpack and Babel';
+const store = configureStore();
+store.runSaga(rootSaga);
+
 ReactDOM.render(
-  <App title={title} />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app'),
 );

@@ -13,6 +13,13 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        exclude: /node_modules/,
+        use: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+        ],
+      },
     ],
   },
   resolve: {
