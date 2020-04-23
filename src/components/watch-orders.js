@@ -7,7 +7,6 @@ import { selectOrderBy, deleteFavoriteEpisode, addFavoriteEpisode } from '../act
 const options = ['release', 'episode', 'machete'];
 
 const WatchOrders = (props) => {
-  console.log(props);
   const { episodes, favorites, dispatch } = props;
   const favoriteHandler = (imdbId, favorite) => {
     if (favorite) {

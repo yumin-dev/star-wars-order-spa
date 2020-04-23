@@ -17,8 +17,6 @@ function updatedFavorites(state = [], action) {
     case ADD_FAVORITE_DONE:
       return state.concat([action.imdbId]);
     case DELETE_FAVORITE_DONE:
-      console.log('======= in DELETE_FAVORITE_DONE: ');
-      console.log(state);
       return state.filter((e) => e !== action.imdbId);
     default:
       return state;

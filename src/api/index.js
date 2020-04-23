@@ -16,7 +16,6 @@ const fetchSortedEpisodes = async (sort) => {
 };
 
 const deleteFavorite = async (imdbId) => {
-  console.log('--------------------in deleteFavorite API');
   const url = new URL(host + favoritesEnpoint + imdbId);
   const response = await fetch(url, { method: 'DELETE' });
   if (response.status >= 400) {
