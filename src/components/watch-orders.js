@@ -2,13 +2,20 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Header from './common/header';
 import EpisodeDetails from './common/episode-details';
-import { selectOrderBy } from '../actions';
+import { selectOrderBy, deleteFavoriteEpisode, addFavoriteEpisode } from '../actions';
 
 const options = ['release', 'episode', 'machete'];
 
 const WatchOrders = (props) => {
   console.log(props);
-  const { episodes, dispatch } = props;
+  const { episodes, favorites, dispatch } = props;
+  const favoriteHandler = (imdbId, favorite) => {
+    if (favorite) {
+      dispatch(deleteFavoriteEpisode(imdbId));
+    } else {
+      dispatch(addFavoriteEpisode(imdbId));
+    }
+  };
   return (
     <div>
       <Header />
@@ -30,7 +37,12 @@ const WatchOrders = (props) => {
       </div>
       <div style={{ backgroundColor: '#eee' }}>
         {episodes && episodes.map((episode) => (
-          <EpisodeDetails episode={episode} key={episode.imdbId} />
+          <EpisodeDetails
+            episode={episode}
+            key={episode.imdbId}
+            favorite={favorites.includes(episode.imdbId)}
+            favoriteHandler={favoriteHandler}
+          />
         ))}
       </div>
     </div>
